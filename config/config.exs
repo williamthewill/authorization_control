@@ -11,6 +11,15 @@ config :authorization_control,
   ecto_repos: [AuthorizationControl.Repo],
   generators: [binary_id: true]
 
+config :authorization_control, AuthorizationControl.Repo,
+migration_primary_key: [
+  name: :id,
+  type: :binary_id,
+  autogenerate: false,
+  read_after_writes: true,
+  default: {:fragment, "gen_random_uuid()"}
+]
+
 # Configures the endpoint
 config :authorization_control, AuthorizationControlWeb.Endpoint,
   url: [host: "localhost"],
@@ -26,6 +35,10 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :authorization_control, AuthorizationControlWeb.Auth.Guardian,
+  issuer: "authorization_control",
+  secret_key: "pyMnB/tTZXYwtbDSTW92Ij5aAWryH6HeiX/hve2p82B0aQheDsTD++eloBz0p8a5"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

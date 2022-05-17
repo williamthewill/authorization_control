@@ -4,7 +4,7 @@ use Mix.Config
 config :authorization_control, AuthorizationControl.Repo,
   username: "postgres",
   password: "postgres",
-  database: "authorization_control_dev",
+  database: "authorization_control",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
